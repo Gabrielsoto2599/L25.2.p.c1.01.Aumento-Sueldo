@@ -1,14 +1,27 @@
-{
+{{
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+    /* Lenguaje y Entorno */
+    "target": "ES2022", /* Subimos de es2016 a ES2022 para usar funciones modernas de JS */
+    "lib": ["DOM", "ESNext"], /* Le decimos que vamos a trabajar con el navegador y JS moderno */
 
-    /* Projects */
-    // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
-    // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
-    // "tsBuildInfoFile": "./.tsbuildinfo",              /* Specify the path to .tsbuildinfo incremental compilation file. */
-    // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects. */
-    // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
-    // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
+    /* Módulos */
+    "module": "ESNext", /* Importante para que los import/export funcionen nativamente */
+    "moduleResolution": "node", /* Ayuda a TS a encontrar tus archivos Cl_Empleado y Cl_Empresa */
+    "rootDir": "./", /* Tu código fuente está en la raíz */
+
+    /* Emitir (Salida) */
+    "outDir": "./", /* Mantiene los archivos .js en la raíz para que el HTML los vea */
+    "removeComments": true, /* Limpia el código final de comentarios para que sea más ligero */
+    "noEmitOnError": true, /* No genera el .js si hay un error en el .ts (evita bugs) */
+
+    /* Interoperabilidad y Rigidez */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, /* Mantener esto en true es lo que nos hace Seniors */
+    "skipLibCheck": true 
+  }
+}
+
 
     /* Language and Environment */
     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
