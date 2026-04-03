@@ -1,32 +1,39 @@
-import Cl_Empleado from "./Cl_Empleado.js";
-import Cl_Empresa from "./Cl_Empresa.js";
+import Cl_Empleado from "./Cl_Empleado";
+import Cl_Empresa from "./Cl_Empresa";
 
-const empleado1: Cl_Empleado = new Cl_Empleado("555 ", 200, "Administrativo",);
-const empleado2: Cl_Empleado = new Cl_Empleado("888", 500, "Obrero");
-const empleado3: Cl_Empleado = new Cl_Empleado("777 ", 400,  "Administrativo");
-const empleado4: Cl_Empleado = new Cl_Empleado("666", 600, "Obrero",);
-const empleado5: Cl_Empleado = new Cl_Empleado("444", 800, "Obrero");
+// Instanciamos el motor de la empresa
+const sotoSystem = new Cl_Empresa();
 
-const empresa: Cl_Empresa = new Cl_Empresa();
+// Definimos la nómina real de Soto System Digital Solution
+const nomina = [
+    new Cl_Empleado("Gabriel Soto", "Senior", 1200),
+    new Cl_Empleado("Simón", "Senior", 1100),
+    new Cl_Empleado("David", "Mid", 800),
+    new Cl_Empleado("Analista DevOps", "DevOps", 950),
+    new Cl_Empleado("Programador Nuevo", "Junior", 550)
+];
 
-empresa.procesarEmpleado(empleado1); 
-empresa.procesarEmpleado(empleado2);
-empresa.procesarEmpleado(empleado3);
-empresa.procesarEmpleado(empleado4);
-empresa.procesarEmpleado(empleado5);    
+// Procesamos a cada colega
+const app = document.getElementById("app");
 
-let salida: HTMLElement | null = document.getElementById("salida");
-if(salida !==null){
-    salida.innerHTML = ` ------* Reporte Empresa *-------
-     <br> La cédula ${empleado1.cedula} tiene nuevo sueldo de $ ${empleado1.nuevoSueldo()}
-     <br> La cédula ${empleado2.cedula} tiene nuevo sueldo de $ ${empleado2.nuevoSueldo()}
-     <br> La cédula ${empleado3.cedula} tiene nuevo sueldo de $ ${empleado3.nuevoSueldo()}
-     <br> La cédula ${empleado4.cedula} tiene nuevo sueldo de $ ${empleado4.nuevoSueldo()}
-     <br> La cédula ${empleado5.cedula} tiene nuevo sueldo de $ ${empleado5.nuevoSueldo()}
-     <br>
-     <br> Total a pagar solo por aumento de sueldo $ ${empresa.monTotIncr()}
-     <br> Porcentaje de personal obrero: ${empresa.porcObrero()}%`
-}
-else {
-    console.error("error")
+if (app) {
+    app.innerHTML = `<h1>Payroll System - Soto System Digital Solution</h1>`;
+    app.innerHTML += `<p><em>Refactorización: 3 de abril - Modo Enfoque</em></p><hr>`;
+
+    nomina.forEach(empleado => {
+        sotoSystem.procesarEmpleado(empleado);
+        
+        app.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <strong>Empleado:</strong> ${empleado.nombre} <br>
+                <strong>Cargo:</strong> ${empleado.rol} <br>
+                <strong>Sueldo Anterior:</strong> $${empleado.sueldoActual} <br>
+                <strong>Aumento:</strong> $${empleado.montoAumento().toFixed(2)} <br>
+                <strong>Nuevo Ingreso:</strong> <span style="color: green;">$${empleado.nuevoSueldo().toFixed(2)}</span>
+            </div>
+        `;
+    });
+
+    app.innerHTML += "<hr>";
+    app.innerHTML += `<h2>Inversión Total en Nómina: $${sotoSystem.totalNominaMensual().toFixed(2)}</h2>`;
 }
