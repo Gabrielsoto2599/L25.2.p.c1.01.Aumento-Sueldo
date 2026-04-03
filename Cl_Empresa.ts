@@ -1,36 +1,25 @@
-import Cl_Empleado from "./Cl_Empleado.js";
+import Cl_Empleado from "./Cl_Empleado";
 
-export default class Cl_Empresa{
-    private _acumTotIncr: number = 0;
-    private _cntObreros: number = 0;
-    private _contEmpleados: number = 0;
+export default class Cl_Empresa {
+  private acumSueldosNuevos: number;
+  private contEmpleados: number;
 
-    constructor(){}
+  constructor() {
+    this.acumSueldosNuevos = 0;
+    this.contEmpleados = 0;
+  }
 
-        procesarEmpleado(empleado: Cl_Empleado):void {
+  procesarEmpleado(e: Cl_Empleado): void {
+    this.contEmpleados++;
+    this.acumSueldosNuevos += e.nuevoSueldo();
+  }
 
-            // acumulador de incremento 
-            this._acumTotIncr += empleado.incremento();
-
-        //  contador de obreros
-        if (empleado.tipoEmpleado == "Obrero" || empleado.tipoEmpleado == "obrero") 
-            this._cntObreros++;
-
-      //contador de empleados
-       this._contEmpleados++
-        } // cierre del procesar
+  totalNominaMensual(): number {
+    return this.acumSueldosNuevos;
+  }
+}
 
 
-    
-        monTotIncr():number{
-            return this._acumTotIncr;
-        }
-           
-        porcObrero():number{
-            if(this._contEmpleados>0) 
-            return (this._cntObreros/this._contEmpleados)*100
-        else return 0;
-        }
         
 }
 
