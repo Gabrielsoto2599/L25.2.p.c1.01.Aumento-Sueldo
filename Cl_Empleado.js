@@ -1,17 +1,16 @@
 export default class Cl_Empleado {
   constructor(nombre, rol, sueldoActual) {
     this.nombre = nombre;
-    this.rol = rol; // 'Senior', 'Mid', 'Junior', 'DevOps'
+    this.rol = rol;
     this.sueldoActual = sueldoActual;
   }
 
-  // Lógica de aumento según el rol
   porcentajeAumento() {
     switch (this.rol.toLowerCase()) {
-      case 'junior': return 20; // 20% de aumento
-      case 'mid': return 15; // 15% de aumento
-      case 'devops': return 12; // 12% de aumento
-      case 'senior': return 10; // 10% de aumento
+      case 'junior': return 20;
+      case 'mid': return 15;
+      case 'devops': return 12;
+      case 'senior': return 10;
       default: return 5;
     }
   }
