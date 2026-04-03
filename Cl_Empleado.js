@@ -1,37 +1,26 @@
 export default class Cl_Empleado {
-    constructor(cedula, sueldoActual, tipoEmpleado) {
-        this._cedula = "";
-        this._sueldoActual = 0;
-        this._tipoEmpleado = "";
-        this.cedula = cedula;
-        this.sueldoActual = sueldoActual;
-        this.tipoEmpleado = tipoEmpleado;
+  constructor(nombre, rol, sueldoActual) {
+    this.nombre = nombre;
+    this.rol = rol; // 'Senior', 'Mid', 'Junior', 'DevOps'
+    this.sueldoActual = sueldoActual;
+  }
+
+  // Lógica de aumento según el rol
+  porcentajeAumento() {
+    switch (this.rol.toLowerCase()) {
+      case 'junior': return 20; // 20% de aumento
+      case 'mid': return 15; // 15% de aumento
+      case 'devops': return 12; // 12% de aumento
+      case 'senior': return 10; // 10% de aumento
+      default: return 5;
     }
-    set cedula(cedula) {
-        this._cedula = cedula;
-    }
-    get cedula() {
-        return this._cedula;
-    }
-    set sueldoActual(sueldoActual) {
-        this._sueldoActual = +sueldoActual;
-    }
-    get sueldoActual() {
-        return this._sueldoActual;
-    }
-    set tipoEmpleado(tipoEmpleado) {
-        this._tipoEmpleado = tipoEmpleado;
-    }
-    get tipoEmpleado() {
-        return this._tipoEmpleado;
-    }
-    incremento() {
-        if (this.tipoEmpleado == "Obrero" || this.tipoEmpleado == "obrero")
-            return this.sueldoActual * 0.20;
-        else
-            return this.sueldoActual * 0.10;
-    }
-    nuevoSueldo() {
-        return this.sueldoActual + this.incremento();
-    }
+  }
+
+  montoAumento() {
+    return this.sueldoActual * (this.porcentajeAumento() / 100);
+  }
+
+  nuevoSueldo() {
+    return this.sueldoActual + this.montoAumento();
+  }
 }
