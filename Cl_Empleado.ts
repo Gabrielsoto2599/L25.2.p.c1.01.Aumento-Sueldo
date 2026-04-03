@@ -1,41 +1,29 @@
-export default class Cl_Empleado{
-   private _cedula: string = ""; 
-   private _sueldoActual: number = 0;
-   private _tipoEmpleado: string ="";
-   constructor ( cedula: string, sueldoActual: number, tipoEmpleado: string){
-           this.cedula = cedula;
-           this.sueldoActual= sueldoActual;
-           this.tipoEmpleado = tipoEmpleado;
-   }
+export default class Cl_Empleado {
+  public nombre: string;
+  public rol: string;
+  public sueldoActual: number;
 
-   set cedula( cedula: string){
-      this._cedula = cedula;
-   }
-   get cedula(): string{
-     return this._cedula;
+  constructor(nombre: string, rol: string, sueldoActual: number) {
+    this.nombre = nombre;
+    this.rol = rol;
+    this.sueldoActual = sueldoActual;
+  }
+
+  porcentajeAumento(): number {
+    const roles: { [key: string]: number } = {
+      'junior': 20,
+      'mid': 15,
+      'devops': 12,
+      'senior': 10
+    };
+    return roles[this.rol.toLowerCase()] || 5;
+  }
+
+  montoAumento(): number {
+    return this.sueldoActual * (this.porcentajeAumento() / 100);
+  }
+
+  nuevoSueldo(): number {
+    return this.sueldoActual + this.montoAumento();
+  }
 }
-   set sueldoActual( sueldoActual: number){
-      this._sueldoActual = +sueldoActual;
-   }
-   get sueldoActual(): number{
-      return this._sueldoActual;
-   }
-
-   set tipoEmpleado( tipoEmpleado: string){
-      this._tipoEmpleado = tipoEmpleado;
-   }
-   get tipoEmpleado():string {
-      return this._tipoEmpleado;
-   }
-
-
-    incremento(): number {
-       if (this.tipoEmpleado == "Obrero" || this.tipoEmpleado =="obrero")
-           return this.sueldoActual * 0.20;
-         else return this.sueldoActual * 0.10;
-   }
-
-   nuevoSueldo(): number{
-     return this.sueldoActual + this.incremento();
-}
- }
