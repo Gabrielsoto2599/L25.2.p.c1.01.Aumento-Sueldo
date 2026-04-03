@@ -1,4 +1,4 @@
-{{
+{
   "compilerOptions": {
     /* Lenguaje y Entorno */
     "target": "ES2022", /* Subimos de es2016 a ES2022 para usar funciones modernas de JS */
@@ -20,7 +20,7 @@
     "strict": true, /* Mantener esto en true es lo que nos hace Seniors */
     "skipLibCheck": true 
   }
-}
+
 
 
     /* Language and Environment */
